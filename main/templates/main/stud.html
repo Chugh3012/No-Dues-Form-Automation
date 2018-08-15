@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Student Homepage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+      <h4>Welcome {{ student.name }}!</h4>
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="{% url 'main:stud_profile' %}">Overall status</a></li>
+        <li><a class="active" href="{% url 'main:stud_full_dept' %}">Department detailed status</a></li>
+        <li><a href="{% url 'main:stud_full_lab' %}"> Lab detailed status</a></li>
+        <li><a href="{% url 'main:rules' %}">Rules</a></li>
+        <li><a href="{% url 'main:contact' %}">Contact</a></li>
+          <li><a href="{% url 'main:logout_user' %}">Log out</a></li>
+      </ul><br>
+    </div>
+    <br>
+
+    <div class="col-sm-9">
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="well">
+            <h4>Details</h4>
+            <p>
+              <ul>
+            <li><b>Name &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp</b>{{ student.name }}</li>
+            <li><b>Webmail &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp</b>{{ student.webmail }}</li>
+            <li><b>Department&nbsp:&nbsp&nbsp</b>{{ student.department }}</li>
+            <li><b>Hostel &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp</b>{{ student.hostel }}</li>
+            </ul>
+              </p>
+          </div>
+        </div>
+    </div>
+        <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Caretaker</h4>
+            <p>
+                {% if student.caretaker_approval is True %}
+                    <span style="color: #11B54A">Approved</span>
+                {%else%}
+                    <span style="color:#e92916">Not Approved</span>
+                {% endif %}
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Warden</h4>
+            <p>{% if student.warden_approval is True %}
+                    <span style="color: #11B54A">Approved</span>
+                {%else%}
+                    <span style="color:#e92916">Not Approved</span>
+                {% endif %}</p>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Gymkhana</h4>
+            <p>{% if student.gymkhana_approval is True %}
+                    <span style="color: #11B54A">Approved</span>
+                {%else%}
+                    <span style="color:#e92916">Not Approved</span>
+                {% endif %}</p>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Assistant Registrar</h4>
+            <p>
+                {% if student.assistant_registrar_approval is True %}
+                    <span style="color: #11B54A">Approved</span>
+                {%else%}
+                    <span style="color:#e92916">Not Approved</span>
+                {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="well">
+               <h4>Submit Thesis</h4>
+                <p>
+                    {% if student.submit_thesis is True %}
+                        <span style="color: #11B54A">Approved</span>
+                    {%else%}
+                        <span style="color:#e92916">Not Approved</span>
+                    {% endif %}
+                </p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+           <div class="well">
+               <h4>Library</h4>
+                <p>
+                    {% if student.library_approval is True %}
+                        <span style="color: #11B54A">Approved</span>
+                    {%else%}
+                        <span style="color:#e92916">Not Approved</span>
+                    {% endif %}
+                </p>
+          </div>
+        </div>
+          <div class="col-sm-4">
+           <div class="well">
+               <h4>Online CC</h4>
+                <p>
+                    {% if student.online_cc_approval is True %}
+                        <span style="color: #11B54A">Approved</span>
+                    {%else%}
+                        <span style="color:#e92916">Not Approved</span>
+                    {% endif %}
+                </p>
+          </div>
+        </div>
+          </div>
+        <div class="row">
+        <div class="col-sm-4">
+           <div class="well">
+               <h4>CC</h4>
+                <p>
+                    {% if student.CC_approval is True %}
+                        <span style="color: #11B54A">Approved</span>
+                    {%else%}
+                        <span style="color:#e92916">Not Approved</span>
+                    {% endif %}
+                </p>
+          </div>
+        </div>
+            <div class="col-sm-4">
+           <div class="well">
+               <h4>Department</h4>
+                <p>
+                    {% if student.dept_status is True %}
+                        <span style="color: #11B54A">Approved</span>
+                    {%else%}
+                        <span style="color:#e92916">Not Approved</span>
+                    {% endif %}
+                </p>
+          </div>
+        </div>
+            <div class="col-sm-4">
+           <div class="well">
+               <h4>Lab/Workshop</h4>
+                <p>
+                    {% if student.lab_status is True %}
+                        <span style="color: #11B54A">Approved</span>
+                    {%else%}
+                        <span style="color:#e92916">Not Approved</span>
+                    {% endif %}
+                </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="well">
+           <h4>HOD</h4>
+                <p>
+                    {% if student.HOD_approval is True %}
+                        <span style="color: #11B54A">Approved</span>
+                    {%else%}
+                        <span style="color:#e92916">Not Approved</span>
+                    {% endif %}
+                </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="well">
+           <h4>Account</h4>
+                <p>
+                    {% if student.account_approval is True %}
+                        <span style="color: #11B54A">Approved</span>
+                    {%else%}
+                        <span style="color:#e92916">Not Approved</span>
+                    {% endif %}
+                </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="container-fluid text-center">
+  <p>&copy; 2016 IIT Guwahati</p>
+</footer>
+</body>
+</html>
+
